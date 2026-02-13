@@ -34,18 +34,25 @@ export default function storeReducer(store, action = {}) {
         ...store,
         characters: action.payload
       }
-    case "toggle_favorite":
-      const character = action.payload;
+    case "toggle_favorite": {
+      const fav = action.payload; 
 
       const exists = store.favorites.some(
-        item => item.id === character.id
+        item => item.id === fav.id && item.type === fav.type
       )
 
       return {
         ...store,
         favorites: exists
-          ? store.favorites.filter(item => item.id !== character.id)
-          : [...store.favorites, character]
+          ? store.favorites.filter(item => !(item.id === fav.id && item.type === fav.type))
+          : [...store.favorites, fav]
+      }
+    }
+
+    case 'set_locations':
+      return {
+        ...store,
+        locations: action.payload
       }
 
     default:

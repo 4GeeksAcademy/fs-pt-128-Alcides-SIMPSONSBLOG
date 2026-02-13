@@ -62,15 +62,6 @@ export const CharacterInfo = () => {
                     <div>{character.occupation ?? "Unknown"}</div>
                 </div>
 
-                <div className="col-6 col-md">
-                    <div className="text-danger text-uppercase small">Hair Color</div>
-                    <div>{character.hair_color ?? "Unknown"}</div>
-                </div>
-
-                <div className="col-6 col-md">
-                    <div className="text-danger text-uppercase small">Eye Color</div>
-                    <div>{character.eye_color ?? "Unknown"}</div>
-                </div>
             </div>
         </div>
     );
