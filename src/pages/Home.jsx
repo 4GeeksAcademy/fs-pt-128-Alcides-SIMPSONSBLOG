@@ -10,8 +10,6 @@ export const Home = () => {
 
 	useEffect(() => {
 		getCharacters(dispatch)
-
-
 	}, [])
 
 

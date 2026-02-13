@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
 export const CharacterCard = ({ character }) => {
     const imgUrl = `https://cdn.thesimpsonsapi.com/500/character/${character.id}.webp`;
+
+    const { store, dispatch } = useGlobalReducer()
+
+    const isFavorite = store.favorites.some(
+        item => item.id === character.id
+    )
+
+
+    const addFavorite = () => {
+        dispatch({
+            type: "toggle_favorite",
+            payload: character
+        })
+    }
+
 
 
     return (
@@ -24,15 +40,19 @@ export const CharacterCard = ({ character }) => {
                 <p className="card-status"> Status: {character.status}</p>
             </div>
             <div className="mt-auto d-flex justify-content-between align-items-center px-3 pt-2 pb-3">
-                <Link to={`character/${character.id}`}> 
-                <button className="btn btn-outline-primary">
-                    Learn more!
-                </button>
+                <Link to={`character/${character.id}`}>
+                    <button className="btn btn-outline-primary">
+                        Learn more!
+                    </button>
                 </Link>
 
-                <button className="btn btn-outline-warning">
-                    <i className="fa-regular fa-heart"></i>
+                <button
+                    className={`btn ${isFavorite ? "btn-warning" : "btn-outline-warning"}`}
+                    onClick={addFavorite}
+                >
+                    <i className={`fa-${isFavorite ? "solid" : "regular"} fa-heart`}></i>
                 </button>
+
             </div>
 
 

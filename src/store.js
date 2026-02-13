@@ -1,5 +1,5 @@
-export const initialStore=()=>{
-  return{
+export const initialStore = () => {
+  return {
     message: null,
     todos: [
       {
@@ -14,26 +14,41 @@ export const initialStore=()=>{
       }
     ],
     characters: [],
-    locations:[]
+    locations: [],
+    favorites: [],
   }
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
+  switch (action.type) {
     case 'add_task':
 
-      const { id,  color } = action.payload
+      const { id, color } = action.payload
 
       return {
         ...store,
         todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
       };
-      case 'set_characters':
-        return{
-          ...store,
-          characters: action.payload
-        }
+    case 'set_characters':
+      return {
+        ...store,
+        characters: action.payload
+      }
+    case "toggle_favorite":
+      const character = action.payload;
+
+      const exists = store.favorites.some(
+        item => item.id === character.id
+      )
+
+      return {
+        ...store,
+        favorites: exists
+          ? store.favorites.filter(item => item.id !== character.id)
+          : [...store.favorites, character]
+      }
+
     default:
       throw Error('Unknown action.');
-  }    
+  }
 }
