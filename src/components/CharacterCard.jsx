@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 export const CharacterCard = ({ character }) => {
     const imgUrl = `https://cdn.thesimpsonsapi.com/500/character/${character.id}.webp`;
 
@@ -20,15 +23,18 @@ export const CharacterCard = ({ character }) => {
 
                 <p className="card-status"> Status: {character.status}</p>
             </div>
-            <div className="mt-auto d-flex justify-content-between align-items-center px-2 pt-2">
+            <div className="mt-auto d-flex justify-content-between align-items-center px-3 pt-2 pb-3">
+                <Link to={`character/${character.id}`}> 
                 <button className="btn btn-outline-primary">
                     Learn more!
                 </button>
+                </Link>
 
                 <button className="btn btn-outline-warning">
                     <i className="fa-regular fa-heart"></i>
                 </button>
             </div>
+
 
 
 

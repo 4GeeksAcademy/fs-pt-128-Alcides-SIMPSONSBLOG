@@ -10,14 +10,14 @@ export const getCharacters = async (dispatch) => {
     
 }
 
-export const getLocations = async (dispatch) => {
+export const getCharacter = async (id,) => {
     const response = await fetch(
-        `https://thesimpsonsapi.com/api/locations`)
+        `https://thesimpsonsapi.com/api/characters/${id}`)
     if (!response.ok) {
         return
     }
     const data = await response.json()
-    dispatch({type: "set_locations", payload: data.results})
-    console.log(data.results);
+    return data
     
 }
+

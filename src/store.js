@@ -33,11 +33,6 @@ export default function storeReducer(store, action = {}) {
           ...store,
           characters: action.payload
         }
-        case 'set_locations':
-          return{
-            ...store,
-            locations: action.payload
-          }
     default:
       throw Error('Unknown action.');
   }    
